@@ -1,0 +1,2 @@
+def EnableTkinterHighDPISupport(root, scalingFactor):
+    root.tk.call('tk', 'scaling', scalingFactor / 75)
