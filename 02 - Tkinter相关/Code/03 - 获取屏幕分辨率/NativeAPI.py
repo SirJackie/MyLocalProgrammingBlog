@@ -43,6 +43,14 @@ def IsHighDPIModeOpened():
         return True
 
 
+def GetScreenResolutionUsingTkinterDPI():
+    root = tk.Tk()
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    root.destroy()
+    return screen_width, screen_height
+
+
 def GetScreenLowDPIResolution():
     if osType == "Windows":
         # Use Win32 API to get resolution
@@ -50,10 +58,7 @@ def GetScreenLowDPIResolution():
         return user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
     else:
         # Use Tkinter API to get resolution
-        root = tk.Tk()
-        screen_width = root.winfo_screenwidth()
-        screen_height = root.winfo_screenheight()
-        return screen_width, screen_height
+        return GetScreenResolutionUsingTkinterDPI()
 
 
 def GetScreenResolution():
