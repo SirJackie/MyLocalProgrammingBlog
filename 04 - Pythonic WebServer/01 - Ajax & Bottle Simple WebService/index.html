@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Example</title>
+    <script src="./jquery-3.6.0.min"></script>
+</head>
+<body>
+    <h1>AJAX Example</h1>
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="button" id="submit">Submit</button>
+    </form>
+    <div id="message"></div>
+    <script>
+        $(document).ready(function() {
+            // 绑定按钮的点击事件
+            $('#submit').click(function() {
+                // 获取输入框的值
+                var name = $('#name').val();
+                // 发送AJAX请求
+                $.ajax({
+                    url: '/ajax',
+                    method: 'POST',
+                    data: {name: name},
+                    success: function(response) {
+                        // 显示响应消息
+                        var message = JSON.parse(response).message;
+                        $('#message').text(message);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
