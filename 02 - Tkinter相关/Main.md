@@ -186,7 +186,7 @@ img = ImageGrab.grab()
 print (img.size)
 ```
 
-## 04 - 高DPI支持
+## 04 - Tk.Scaling 规则
 
 ```
 WinDPI: https://blog.csdn.net/qq_25921925/article/details/103987572
@@ -215,7 +215,7 @@ root.tk.call('tk', 'scaling', 1.33333)
 > 通常在缩放比率在100%时这个比率为 96/72=1.3333…
 > 你也可以使用 self.tk.call(‘tk’, ‘scaling’) 查看当前值
 
-## 05 - Tk.Scaling 规则
+## 05 - 高DPI支持
 
 ```
 WinDPI: https://blog.csdn.net/qq_25921925/article/details/103987572
