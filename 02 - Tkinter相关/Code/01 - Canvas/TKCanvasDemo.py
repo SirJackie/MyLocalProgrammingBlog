@@ -19,8 +19,8 @@ root = CreateWindow(1000, 500, "ChessUI")
 canvas = CreateCanvas(root, 0, 0, 1000, 500)
 
 # canvas.create_line(x1, y1, x2, y2, fill="black")
-# canvas.create_oval(x, y, width, height, fill="white", outline="black")
-# canvas.create_rectangle(x, y, width, height, fill="white", outline="black")
+# canvas.create_oval(x1, y1, x2, y2, fill="white", outline="black")
+# canvas.create_rectangle(x1, y1, x2, y2, fill="white", outline="black")
 
 # Draw Image
 # Support gif, some versions of tkinter support png, no jpg support

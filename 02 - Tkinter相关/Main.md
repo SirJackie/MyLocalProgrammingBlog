@@ -233,6 +233,12 @@ Tkinter的高DPI支持，有两种方法：
 
 ## 06 - 用 Tk.Frame 来在主窗口中内嵌子窗口
 
+```
+https://blog.csdn.net/tinga_kilin/article/details/108291802?spm=1001.2014.3001.5502
+```
+
+
+
 ## 07 - Tkinter布局助手：拖拽式布局Tkinter
 
 在线使用
