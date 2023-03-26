@@ -29,7 +29,7 @@ canvas.create_text(
 
 ## 02 - Canvas Update 刷新 & 双缓冲问题
 
-## 03 - 获取屏幕分辨率 & 高DPI支持
+## 03 - 获取屏幕分辨率
 
 ```
 GetResolution: https://www.codenong.com/3129322/
@@ -186,11 +186,43 @@ img = ImageGrab.grab()
 print (img.size)
 ```
 
+## 04 - 高DPI支持
+
+```
+WinDPI: https://blog.csdn.net/qq_25921925/article/details/103987572
+TkScaling: https://blog.csdn.net/fzipw/article/details/127942079
+```
+
+Tkinter的高DPI支持分两步：
+
+- 打开Windows高DPI模式
+- 启用TkScaling来缩放Tkinter空间
+
+打开Windows高DPI模式的方法见`03 - 获取屏幕分辨率`。
+
+启用TkScaling方法：
+
+```
+root.tk.call('tk', 'scaling', 1.33333)
+```
+
+其中，1.33333是缩放倍数。如果不设置的话，默认就是1.33333（就是100÷75）而不是1，这是个大坑。
+
+1.33333是因为：
+
+> 链接: https://www.tcl.tk/man/tcl8.6/TkCmd/tk.html.
+> tkinter有一个内部缩放因子,用于将点和英寸等测量值转换为像素.您可以使用"tk scaling"命令进行设置.此命令采用一个参数,即一个"点"中的像素数.一个点是1/72英寸,因此缩放因子1.0适用于72DPI显示器.
+> 通常在缩放比率在100%时这个比率为 96/72=1.3333…
+> 你也可以使用 self.tk.call(‘tk’, ‘scaling’) 查看当前值
+
 ## 05 - Tk.Scaling 规则
 
 ```
-UsageExample: https://blog.csdn.net/qq_25921925/article/details/103987572
+WinDPI: https://blog.csdn.net/qq_25921925/article/details/103987572
+TkScaling: https://blog.csdn.net/fzipw/article/details/127942079
 ```
+
+见`04 - 高DPI支持`
 
 ## 06 - 用 Tk.Frame 来在主窗口中内嵌子窗口
 
