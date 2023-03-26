@@ -189,16 +189,8 @@ print (img.size)
 ## 04 - Tk.Scaling 规则
 
 ```
-WinDPI: https://blog.csdn.net/qq_25921925/article/details/103987572
 TkScaling: https://blog.csdn.net/fzipw/article/details/127942079
 ```
-
-Tkinter的高DPI支持分两步：
-
-- 打开Windows高DPI模式
-- 启用TkScaling来缩放Tkinter空间
-
-打开Windows高DPI模式的方法见`03 - 获取屏幕分辨率`。
 
 启用TkScaling方法：
 
@@ -222,7 +214,22 @@ WinDPI: https://blog.csdn.net/qq_25921925/article/details/103987572
 TkScaling: https://blog.csdn.net/fzipw/article/details/127942079
 ```
 
-见`04 - 高DPI支持`
+Tkinter的高DPI支持，有两种方法：
+
+- 在创建root窗口对象**之间**，打开Windows高DPI模式
+  - 优点：更容易实现，自动支持缩放，不需要手动TkScaling
+  - 缺点：自动缩放和Windows显示设置里面的“缩放比例”（100%、125%）正相关，与系统耦合
+- 在创建root窗口对象**之后**，打开Windows高DPI模式：
+  - 优点：可以自定义缩放比例
+  - 缺点：更麻烦，一开始会所有的控件都变小，需要自己使用TkScaling手动缩放来修正
+
+我一般使用第二种方法，来获得更大的可控制性和Linux兼容性。
+
+需要注意的是，TkScaling只对相对布局、控件的字体大小有影响，对绝对布局、Canvas大小、窗口则没有影响。这是很好的特性，这样就不会因为TkScaling到200%，窗口大小就要除以2。
+
+打开Windows高DPI模式的方法见`03 - 获取屏幕分辨率`。
+
+使用TkScaling方法见`04 - Tk.Scaling 规则`。
 
 ## 06 - 用 Tk.Frame 来在主窗口中内嵌子窗口
 
