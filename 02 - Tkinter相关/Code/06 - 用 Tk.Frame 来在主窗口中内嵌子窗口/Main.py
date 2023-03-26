@@ -27,20 +27,9 @@ frame = Frame(root, width=1000, height=700)
 hwnd = win32gui.FindWindow(None, u"SubWindow")  # 获取窗口句柄
 win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, 500, 500, win32con.SWP_SHOWWINDOW)  # 更改窗口在Frame里面的位置
 
-
 win32gui.SetParent(hwnd, frame.winfo_id())  # 显示窗口
 frame.place(x=0, y=0)
 
-
-def winfun():
-    s = win32gui.GetWindowText(hwnd)
-    if len(s) > 3:
-        print("winfun, child_hwnd: %d   txt: %s" % (hwnd, s))
-    return 1
-
-
 hwnd = win32gui.FindWindow(None, u"MainWindow")  # 获取窗口句柄
-win32gui.EnumChildWindows(hwnd, winfun, None)
-# win32gui.SetWindowPos(childHwnd, win32con.HWND_TOPMOST, 0, 0, 500, 500, win32con.SWP_SHOWWINDOW)  # 更改窗口在Frame里面的位置
 
 root.mainloop()

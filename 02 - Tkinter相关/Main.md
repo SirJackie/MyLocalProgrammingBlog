@@ -234,10 +234,92 @@ Tkinter的高DPI支持，有两种方法：
 ## 06 - 用 Tk.Frame 来在主窗口中内嵌子窗口
 
 ```
-https://blog.csdn.net/tinga_kilin/article/details/108291802?spm=1001.2014.3001.5502
+内嵌窗口: https://blog.csdn.net/tinga_kilin/article/details/108291802?spm=1001.2014.3001.5502
+控制窗口大小: https://code84.com/824158.html
+最大化最小化: https://blog.csdn.net/weixin_45081575/article/details/128837413
 ```
 
+最简单代码：
 
+SubWindow：
+
+```python
+import tkinter as tk
+
+
+def CreateWindow(width, height, title):
+    root = tk.Tk()
+    root.geometry(str(width) + "x" + str(height))
+    root.title(title)
+    return root
+
+
+def CreateCanvas(root, x, y, width, height):
+    canvas = tk.Canvas(root, width=width, height=height)
+    canvas.place(x=x, y=y)
+    return canvas
+
+
+root = CreateWindow(500, 250, "SubWindow")
+canvas = CreateCanvas(root, 0, 0, 500, 250)
+
+canvas.create_line(10, 10, 100, 100, fill="black")
+canvas.create_oval(10, 110, 100, 200, fill="white", outline="black")
+canvas.create_rectangle(110, 10, 200, 100, fill="white", outline="black")
+
+canvas.create_text(
+    (110, 170),
+    text="你好，这是子窗口！\nThis is sub window!",
+    font=("黑体", 30),
+    fill="#000000",
+    anchor=tk.W,
+    justify=tk.LEFT
+)
+
+root.mainloop()
+
+```
+
+MainWindow：
+
+```python
+from tkinter import *
+import win32gui
+import win32con
+import time
+import os
+
+os.system("start python SubWindow.py")
+time.sleep(1)
+
+
+def CreateWindow(width, height, title):
+    root = Tk()
+    root.geometry(str(width) + "x" + str(height))
+    root.title(title)
+    return root
+
+
+def CreateCanvas(root, x, y, width, height):
+    canvas = Canvas(root, width=width, height=height)
+    canvas.place(x=x, y=y)
+    return canvas
+
+
+root = CreateWindow(1000, 700, "MainWindow")
+
+frame = Frame(root, width=1000, height=700)
+hwnd = win32gui.FindWindow(None, u"SubWindow")  # 获取窗口句柄
+win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 0, 0, 500, 500, win32con.SWP_SHOWWINDOW)  # 更改窗口在Frame里面的位置
+
+win32gui.SetParent(hwnd, frame.winfo_id())  # 显示窗口
+frame.place(x=0, y=0)
+
+hwnd = win32gui.FindWindow(None, u"MainWindow")  # 获取窗口句柄
+
+root.mainloop()
+
+```
 
 ## 07 - Tkinter布局助手：拖拽式布局Tkinter
 
